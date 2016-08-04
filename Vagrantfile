@@ -15,7 +15,7 @@ $INSTALL_NODEJS = <<SCRIPT
 
 echo “~~~~~ Build n ~~~~~”
 apt-get update -qq
-apt-get install -y build-essential curl
+apt-get install -y build-essential curl git
 git clone https://github.com/tj/n.git
 cd n
 make install
