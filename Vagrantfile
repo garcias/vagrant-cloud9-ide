@@ -13,7 +13,7 @@ end
 
 $INSTALL_NODEJS = <<SCRIPT
 
-echo “~~~~~ Build n ~~~~~”
+echo "~~~~~ Build n ~~~~~"
 apt-get update -qq
 apt-get install -y build-essential curl git
 git clone https://github.com/tj/n.git
@@ -21,9 +21,9 @@ cd n
 make install
 cd ..
 rm -rf n
-echo “~~~~~ Install Node LTS ~~~~~”
+echo "~~~~~ Install Node LTS ~~~~~"
 n lts
-echo “~~~~~ Install forever ~~~~~”
+echo "~~~~~ Install forever ~~~~~"
 npm install -g forever
 
 SCRIPT
