@@ -23,6 +23,8 @@ cd ..
 rm -rf n
 echo “~~~~~ Install Node LTS ~~~~~”
 n lts
+echo “~~~~~ Install forever ~~~~~”
+npm install -g forever
 
 SCRIPT
 
@@ -41,6 +43,6 @@ $START_CLOUD9_IDE = <<SCRIPT
 
 echo "Start Cloud9 IDE Standalone application"
 cd /home/vagrant/Cloud9IDE
-node server.js -p 8181 -l 0.0.0.0 -a : -w "/vagrant/workspace"
+forever start server.js -p 8181 -l 0.0.0.0 -a : -w "/vagrant/workspace"
 
 SCRIPT
