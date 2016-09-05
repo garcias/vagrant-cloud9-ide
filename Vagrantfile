@@ -43,7 +43,7 @@ SCRIPT
 
 $START_CLOUD9_IDE = <<SCRIPT
 
-echo "Start Cloud9 IDE Standalone application"
+echo "Start Cloud9 IDE Standalone application at 10.0.0.222:8181"
 cd /home/vagrant/Cloud9IDE
 forever start server.js -p 8181 -l 0.0.0.0 -a : -w "/vagrant/workspace"
 
