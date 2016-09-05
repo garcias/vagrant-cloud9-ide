@@ -8,6 +8,9 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", privileged: true, inline: $INSTALL_NODEJS
   config.vm.provision "shell", privileged: false, inline: $INSTALL_CLOUD9_IDE
   config.vm.provision "shell", privileged: false, run: "always", inline: $START_CLOUD9_IDE
+  config.vm.provider :virtualbox do |v|
+    v.name = "Cloud9"
+  end
 
 end
 
@@ -43,8 +46,8 @@ SCRIPT
 
 $START_CLOUD9_IDE = <<SCRIPT
 
-echo "Start Cloud9 IDE Standalone application at 10.0.0.222:8181"
 cd /home/vagrant/Cloud9IDE
 forever start server.js -p 8181 -l 0.0.0.0 -a : -w "/vagrant/workspace"
+echo "Serving Cloud9 IDE at http://10.0.0.222:8181"
 
 SCRIPT
