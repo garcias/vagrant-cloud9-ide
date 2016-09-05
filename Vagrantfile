@@ -23,6 +23,7 @@ cd ..
 rm -rf n
 echo "~~~~~ Install Node LTS ~~~~~"
 n lts
+npm config set jobs 1
 echo "~~~~~ Install forever ~~~~~"
 npm install -g forever
 
@@ -35,6 +36,7 @@ cd /home/vagrant
 git clone https://github.com/c9/core.git Cloud9IDE
 echo "Install Cloud9 IDE"
 cd Cloud9IDE
+npm config set jobs 1
 scripts/install-sdk.sh
 
 SCRIPT
