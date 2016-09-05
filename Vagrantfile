@@ -22,7 +22,7 @@ make install
 cd ..
 rm -rf n
 echo "~~~~~ Install Node LTS ~~~~~"
-n lts
+n stable
 npm config set jobs 1
 echo "~~~~~ Install forever ~~~~~"
 npm install -g forever
