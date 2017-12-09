@@ -5,11 +5,13 @@ Vagrant.configure(2) do |config|
 
   config.vm.box = "ubuntu/trusty64"
   config.vm.network "private_network", ip: "10.0.0.222"
+  config.ssh.forward_agent = true
   config.vm.provision "shell", privileged: true, inline: $INSTALL_NODEJS
   config.vm.provision "shell", privileged: false, inline: $INSTALL_CLOUD9_IDE
   config.vm.provision "shell", privileged: false, run: "always", inline: $START_CLOUD9_IDE
   config.vm.provider :virtualbox do |v|
     v.name = "Cloud9"
+    v.memory = 1024
   end
 
 end
@@ -25,7 +27,7 @@ make install
 cd ..
 rm -rf n
 echo "~~~~~ Install Node LTS ~~~~~"
-n stable
+n 0.10
 npm config set jobs 1
 echo "~~~~~ Install forever ~~~~~"
 npm install -g forever
