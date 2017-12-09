@@ -26,11 +26,13 @@ cd n
 make install
 cd ..
 rm -rf n
-echo "~~~~~ Install Node LTS ~~~~~"
+echo "~~~~~ Install Node 0.10 ~~~~~"
 n 0.10
 npm config set jobs 1
 echo "~~~~~ Install forever ~~~~~"
 npm install -g forever
+echo "~~~~~ Install c9 plugin ~~~~~"
+npm install -g c9
 
 SCRIPT
 
