@@ -6,7 +6,7 @@ Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/trusty64"
   config.vm.network "private_network", ip: "10.0.0.222"
   config.ssh.forward_agent = true
-  config.vm.provision "shell", privileged: true, inline: $INSTALL_NODEJS
+  config.vm.provision "shell", privileged: false, inline: $INSTALL_NODEJS
   config.vm.provision "shell", privileged: false, inline: $INSTALL_CLOUD9_IDE
   config.vm.provision "shell", privileged: false, run: "always", inline: $START_CLOUD9_IDE
   config.vm.provider :virtualbox do |v|
@@ -18,20 +18,14 @@ end
 
 $INSTALL_NODEJS = <<SCRIPT
 
-echo "~~~~~ Build n ~~~~~"
-apt-get update -qq
-apt-get install -y build-essential curl git
-git clone https://github.com/tj/n.git
-cd n
-make install
-cd ..
-rm -rf n
-echo "~~~~~ Install Node 0.10 ~~~~~"
-n 0.10
+sudo apt-get update -qq
+sudo apt-get install -y build-essential libssl-dev curl git
+curl https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | sh
+source ~/.bashrc
+source ~/.profile
+nvm install 8.1.3
 npm config set jobs 1
-echo "~~~~~ Install forever ~~~~~"
 npm install -g forever
-echo "~~~~~ Install c9 plugin ~~~~~"
 npm install -g c9
 
 SCRIPT
@@ -42,9 +36,8 @@ echo "Cloning Cloud9 Core"
 cd /home/vagrant
 git clone https://github.com/c9/core.git Cloud9IDE
 echo "Install Cloud9 IDE"
-cd Cloud9IDE
 npm config set jobs 1
-scripts/install-sdk.sh
+Cloud9IDE/scripts/install-sdk.sh
 
 SCRIPT
 
